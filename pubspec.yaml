@@ -1,0 +1,51 @@
+name: flutter_challenge
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies:
+  auto_route: ^7.2.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_mobx: ^2.1.0
+  flutter_svg: ^2.0.0
+  get_it: ^7.6.0
+  injectable: ^2.1.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  mobx: ^2.2.0
+  validators: ^3.0.0
+
+dev_dependencies:
+  auto_route_generator: ^7.1.1
+  build_runner: ^2.4.6
+  flutter_gen_runner: ^5.3.1
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  hive_generator: ^2.0.1
+  injectable_generator: ^2.1.5
+  mobx_codegen: ^2.4.0
+  mockito: ^5.4.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - graphics/
+
+  fonts:
+    - family: TTNorms
+      fonts:
+        - asset: fonts/TT_Norms_Pro_Regular.otf
+        - asset: fonts/TT_Norms_Pro_Medium.otf
+          weight: 500
+
+flutter_gen:
+  line_length: 120
+
+  integrations:
+    flutter_svg: true

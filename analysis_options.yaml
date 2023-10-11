@@ -1,0 +1,30 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  exclude:
+    [
+      test/**/*.mocks.dart,
+      lib/**/*.g*.dart,
+      ./**/*.gr.dart,
+      lib/**/injection.config.dart,
+    ]
+  errors:
+    always_use_package_imports: error
+    cast_nullable_to_non_nullable: error
+    prefer_const_constructors: warning
+    prefer_const_constructors_in_immutables: warning
+    prefer_const_declarations: warning
+    prefer_const_literals_to_create_immutables: warning
+    prefer_final_fields: warning
+    prefer_final_in_for_each: warning
+    prefer_final_locals: warning
+    require_trailing_commas: true
+    recursive_getters: error
+    unawaited_futures: warning
+
+linter:
+  rules:
+    constant_identifier_names: true
+    avoid_empty_else: true
+    library_prefixes: false
+    always_use_package_imports: true
+    require_trailing_commas: true
