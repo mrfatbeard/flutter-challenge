@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app_router.gr.dart';
 import 'package:flutter_challenge/domain/entity/user.dart';
+import 'package:flutter_challenge/presentation/common/mobx_auto_dispose_mixin.dart';
 import 'package:flutter_challenge/presentation/main/main_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
@@ -14,7 +15,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with MobXAutoDisposeMixin {
   final MainStore _store = GetIt.I.get();
 
   @override
@@ -25,7 +26,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> _checkLogin() async {
     await _store.checkLogin();
-    autorun((_) => _redirect(_store.currentUser));
+    autorun((_) => _redirect(_store.currentUser)).autoDispose(this);
   }
 
   @override

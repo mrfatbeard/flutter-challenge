@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app_router.gr.dart';
 import 'package:flutter_challenge/domain/entity/user.dart';
+import 'package:flutter_challenge/presentation/common/mobx_auto_dispose_mixin.dart';
 import 'package:flutter_challenge/presentation/home/home_store.dart';
 import 'package:flutter_challenge/themes/text_styles.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -18,14 +19,14 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with MobXAutoDisposeMixin {
   final HomeStore _store = GetIt.I.get();
 
   @override
   void initState() {
     super.initState();
     _store.currentUser = widget.user;
-    reaction((_) => _store.currentUser, _redirectToAuth);
+    reaction((_) => _store.currentUser, _redirectToAuth).autoDispose(this);
   }
 
   @override

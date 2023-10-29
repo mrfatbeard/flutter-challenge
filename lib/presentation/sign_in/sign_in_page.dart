@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app_router.gr.dart';
 import 'package:flutter_challenge/extensions/context_ext.dart';
 import 'package:flutter_challenge/presentation/common/adjustable_text_color_text_field.dart';
+import 'package:flutter_challenge/presentation/common/mobx_auto_dispose_mixin.dart';
 import 'package:flutter_challenge/presentation/sign_in/sign_in_store.dart';
 import 'package:flutter_challenge/themes/text_styles.dart';
 import 'package:get_it/get_it.dart';
@@ -15,7 +16,7 @@ class SignInPage extends StatefulWidget {
   State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInPageState extends State<SignInPage> with MobXAutoDisposeMixin {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -26,8 +27,8 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
     _usernameController.addListener(_onUsernameChanged);
     _passwordController.addListener(_onPasswordChanged);
-    reaction((_) => _store.error, _showError);
-    when((_) => _store.user != null, _redirectToHome);
+    reaction((_) => _store.error, _showError).autoDispose(this);
+    when((_) => _store.user != null, _redirectToHome).autoDispose(this);
   }
 
   @override
