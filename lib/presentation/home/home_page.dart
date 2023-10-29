@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge/app_router.gr.dart';
 import 'package:flutter_challenge/domain/entity/user.dart';
 import 'package:flutter_challenge/presentation/common/mobx_auto_dispose_mixin.dart';
+import 'package:flutter_challenge/presentation/home/home_content.dart';
 import 'package:flutter_challenge/presentation/home/home_store.dart';
-import 'package:flutter_challenge/themes/text_styles.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
@@ -32,34 +32,10 @@ class _HomePageState extends State<HomePage> with MobXAutoDisposeMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Observer(builder: _buildContent),
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
-    final user = _store.currentUser;
-    final colorScheme = Theme.of(context).colorScheme;
-    return Center(
-      child: DefaultTextStyle(
-        style: TextStyles.h6.copyWith(color: colorScheme.onBackground),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Email: ${user?.email}"),
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Text("Username: ${user?.username}"),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Text("Password: ${user?.password}"),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: TextButton(onPressed: _onLogoutPressed, child: const Text("Logout")),
-            ),
-          ],
+      body: Observer(
+        builder: (context) => HomeContent(
+          user: _store.currentUser,
+          onLogoutPressed: _onLogoutPressed,
         ),
       ),
     );
